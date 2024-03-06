@@ -1,6 +1,5 @@
+const pool = require("../../DataBase/database");
 
-<<<<<<< HEAD
-=======
 module.exports = {
     /*rent: (data, callBack) => {
       pool.query(
@@ -114,5 +113,5 @@ module.exports = {
       );
     }
   };
-  
->>>>>>> d904081 (rent)
+
+
