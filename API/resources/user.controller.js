@@ -7,7 +7,7 @@ const {
     getResourceByUserId
   } = require("./user.service");
 
-  //const { sign } = require("jsonwebtoken");
+
   
   module.exports = {
     createResource: (req, res) => {
@@ -41,7 +41,6 @@ const {
             message: "Resource not Found"
           });
         }
-        //results.password = undefined;
         return res.json({
           success: 1,
           data: results
@@ -62,7 +61,6 @@ const {
             message: "Resource not Found"
           });
         }
-        //results.password = undefined;
         return res.json({
           success: 1,
           data: results
@@ -85,8 +83,6 @@ const {
 
     updateResource: (req, res) => {
       const body = req.body;
-      //const salt = genSaltSync(10);
-      //body.password = hashSync(body.password, salt);
       updateResource(body, (err, results) => {
         if (err) {
           console.log(err);
