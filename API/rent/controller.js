@@ -107,25 +107,28 @@ const {
         });
       },
 
-    getRentByUserId: (req, res) => {
-      const user_id = req.params.user_id;
-      getRentByUserId(user_id, (err, results) => {
-        if (err) {
-          console.log(err);
-          return;
-        }
-        if (!results) {
+      getRentByUserId: (req, res) => {
+        const user_id = req.params.user_id;
+        getRentByUserId(user_id, (err, results) => {
+          if (err) {
+            console.log(err);
+            return res.status(500).json({
+              success: 0,
+              message: "Database connection error"
+            });
+          }
+          if (results.length === 0) { // Use results.length to check for no results
+            return res.json({
+              success: 0,
+              message: "No Rents found for user"
+            });
+          }
           return res.json({
-            success: 0,
-            message: "No Rents found for user"
+            success: 1,
+            data: results
           });
-        }
-        return res.json({
-          success: 1,
-          data: results
         });
-      });
-    },
+      },
 
     getRents: (req, res) => {
         getRents((err, results) => {

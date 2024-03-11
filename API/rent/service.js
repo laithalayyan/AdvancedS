@@ -21,35 +21,49 @@ module.exports = {
       );
     },*/
 
-    rent : (data, callBack) => {
-        // First, check if the tool is available
-        pool.query(
-          `SELECT available FROM resources WHERE id = ?`,
-          [data.tool_id],
-          (error, results, fields) => {
-            if (error) {
-              // Database error during the availability check
-              callBack(error);
-            } else if (results.length === 0 || results[0].available !== 'yes') {
-              // Tool does not exist or is not available
-              callBack(new Error('Tool is not available'));
-            } else {
-              // Tool is available, proceed with the rent insert
-              pool.query(
-                `INSERT INTO rent(tool_id, user_id, start_date, end_date) VALUES (?, ?, ?, ?)`,
-                [data.tool_id, data.user_id, data.start_date, data.end_date],
-                (insertError, insertResults, insertFields) => {
-                  if (insertError) {
-                    callBack(insertError);
-                  } else {
-                    callBack(null, insertResults);
-                  }
+    rent: (data, callBack) => {
+      // First, check if the tool is available
+      pool.query(
+        `SELECT * FROM resources WHERE id = ? AND available = 'yes'`,
+        [data.tool_id],
+        (error, results, fields) => {
+          if (error) {
+            // Database error during the availability check
+            callBack(error);
+          } else if (results.length === 0) {
+            // Tool does not exist or is not available
+            callBack(new Error('Tool is not available'));
+          } else {
+            // Tool is available, proceed with the rent insert
+            pool.query(
+              `INSERT INTO rent(tool_id, user_id, start_date, end_date) VALUES (?, ?, ?, ?)`,
+              [data.tool_id, data.user_id, data.start_date, data.end_date],
+              (insertError, insertResults, insertFields) => {
+                if (insertError) {
+                  callBack(insertError);
+                } else {
+                  // After successful insertion, update the tool's availability
+                  pool.query(
+                    `UPDATE resources SET available = 'no' WHERE id = ?`,
+                    [data.tool_id],
+                    (updateError, updateResults, updateFields) => {
+                      if (updateError) {
+                        // If an error occurs during update, rollback the transaction or handle accordingly
+                        callBack(updateError);
+                      } else {
+                        // Everything succeeded, call back with insert results
+                        callBack(null, insertResults);
+                      }
+                    }
+                  );
                 }
-              );
-            }
+              }
+            );
           }
-        );
-      },
+        }
+      );
+    },
+    
 
     updateRentStatus: (data, callBack) => {
         pool.query(
@@ -71,11 +85,15 @@ module.exports = {
 
       getRentByUserId: (user_id, callBack) => {
         pool.query(
-          `select * from rent where user_id = ?`,
+          `SELECT * FROM rent WHERE user_id = ?`,
           [user_id],
           (error, results, fields) => {
             if (error) {
-              callBack(error);
+              return callBack(error);
+            }
+            // Check if the results array is empty, indicating no rents found
+            if (results.length === 0) {
+              return callBack(null, []); // Pass an empty array to indicate no results found
             }
             return callBack(null, results);
           }
