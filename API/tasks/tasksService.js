@@ -1,5 +1,12 @@
 const pool = require("../../DataBase/database");
 
+const getAllTasks = async () => {
+    const query = 'SELECT * FROM tasks';
+    const [tasks] = await pool.execute(query);
+    return tasks;
+};
+
+
 const createTask = async (taskData) => {
     const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/;
     if (taskData.DueDate && !dateFormatRegex.test(taskData.DueDate)) {
@@ -71,5 +78,6 @@ module.exports = {
     createTask,
     getTaskById,
     updateTask,
-    deleteTask
+    deleteTask,
+    getAllTasks
 };

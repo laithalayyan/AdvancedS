@@ -1,5 +1,19 @@
 const tasksService = require('./tasksService');
 
+const getAllTasks = async (req, res) => {
+    try {
+        const tasks = await tasksService.getAllTasks();
+        if (tasks.length > 0) {
+            res.status(200).json(tasks);
+        } else {
+            res.status(404).json({ message: "No tasks found" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+
 const createTask = async (req, res) => {
     try {
         const result = await tasksService.createTask(req.body);
@@ -60,5 +74,6 @@ module.exports = {
     createTask,
     getTask,
     updateTask,
-    deleteTask
+    deleteTask,
+    getAllTasks
 };
