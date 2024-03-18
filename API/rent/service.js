@@ -1,29 +1,10 @@
-const pool = require("../../DataBase/database");
+const pool2 = require("../../DataBase/databaseold");
 
 module.exports = {
-    /*rent: (data, callBack) => {
-      pool.query(
-        `insert into rent(tool_id,user_id,start_date,end_date) 
-        values(?,?,?,?)`,
-        [
-          data.tool_id,
-          data.user_id,
-          data.start_date,
-          data.end_date,
-          
-        ],
-        (error, results, fields) => {
-          if (error) {
-            callBack(error);
-          }
-          return callBack(null, results);
-        }
-      );
-    },*/
 
     rent: (data, callBack) => {
       // First, check if the tool is available
-      pool.query(
+      pool2.query(
         `SELECT * FROM resources WHERE id = ? AND available = 'yes'`,
         [data.tool_id],
         (error, results, fields) => {
@@ -35,7 +16,7 @@ module.exports = {
             callBack(new Error('Tool is not available'));
           } else {
             // Tool is available, proceed with the rent insert
-            pool.query(
+            pool2.query(
               `INSERT INTO rent(tool_id, user_id, start_date, end_date) VALUES (?, ?, ?, ?)`,
               [data.tool_id, data.user_id, data.start_date, data.end_date],
               (insertError, insertResults, insertFields) => {
@@ -43,7 +24,7 @@ module.exports = {
                   callBack(insertError);
                 } else {
                   // After successful insertion, update the tool's availability
-                  pool.query(
+                  pool2.query(
                     `UPDATE resources SET available = 'no' WHERE id = ?`,
                     [data.tool_id],
                     (updateError, updateResults, updateFields) => {
@@ -63,10 +44,12 @@ module.exports = {
         }
       );
     },
+
+    
     
 
     updateRentStatus: (data, callBack) => {
-        pool.query(
+        pool2.query(
           `update rent set start_date=?, end_date=?, rent_status=? where rent_id = ?`,
           [
             data.start_date,
@@ -84,7 +67,7 @@ module.exports = {
       },
 
       getRentByUserId: (user_id, callBack) => {
-        pool.query(
+        pool2.query(
           `SELECT * FROM rent WHERE user_id = ?`,
           [user_id],
           (error, results, fields) => {
@@ -101,7 +84,7 @@ module.exports = {
       },
 
       getRents: callBack => {
-        pool.query(
+        pool2.query(
           `select * from rent`,
           [],
           (error, results, fields) => {
@@ -115,7 +98,7 @@ module.exports = {
 
 
       deleteRent: (rent_id, callBack) => {
-      pool.query(
+      pool2.query(
         `delete from rent where rent_id = ?`,
         [rent_id],
         (error, results, fields) => {
@@ -131,5 +114,3 @@ module.exports = {
       );
     }
   };
-
-
