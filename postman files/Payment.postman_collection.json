@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "48222852-5283-496b-8e74-aca2b38106de",
+		"name": "Payment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33055101"
+	},
+	"item": [
+		{
+			"name": "Delete Payment",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "localhost:3000/payment/3"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Payment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"requestingUserID\": \"1\",\r\n  \"projectID\": \"24\",\r\n  \"paymentAmount\": 200,\r\n  \"paymentMethod\": \"Credit Card\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Payments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/payment"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Payments by user ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/payment/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Payments by project ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/payment/project/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Payment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"requestingUserID\": 1,\r\n    \"projectID\": 1,\r\n    \"paymentAmount\": \"100\",\r\n    \"paymentMethod\": \"Visa\",\r\n    \"status\": \"completed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/payment/3"
+			},
+			"response": []
+		}
+	]
+}

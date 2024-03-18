@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "eb505f65-9543-40c6-989d-5d26a857a9d6",
+		"name": "Resourses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33055101"
+	},
+	"item": [
+		{
+			"name": "Add Tool for specific user by his id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"laithNew\",\r\n    \"available\": \"no\",\r\n    \"description\": \"good\",\r\n    \"toolstatus\": \"new\",\r\n    \"price\": 25\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/users/resources/55",
+				"description": "ghjgjh"
+			},
+			"response": [
+				{
+					"name": "Tool Name already exists",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"laith\",\r\n    \"available\": \"no\",\r\n    \"description\": \"good\",\r\n    \"toolstatus\": \"new\",\r\n    \"price\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/users/resources/55"
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "45"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"2d-l+NLDRv3NlOaAMS5IwVLhvc9bm0\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Mar 2024 23:32:54 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": 0,\n    \"message\": \"Tool already exists\"\n}"
+				},
+				{
+					"name": "Tool added successfully",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"laithNew\",\r\n    \"available\": \"no\",\r\n    \"description\": \"good\",\r\n    \"toolstatus\": \"new\",\r\n    \"price\": 25\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:3000/users/resources/55"
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "49"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"31-RpzfSsdAzyxUolo55f/OI0QNy24\""
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Mar 2024 23:46:50 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"success\": 1,\n    \"message\": \"Tool added successfully\"\n}"
+				}
+			]
+		},
+		{
+			"name": "List Tools",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/users/resources/"
+			},
+			"response": []
+		},
+		{
+			"name": "Git Tool by name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"aaa\",\r\n    \"available\":\"aaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/users/resources/screwdriver"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Resource",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"1\",\r\n    \"name\":\"laith\",\r\n    \"available\":\"laithnew\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/users/resources/"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Resource by its id and owner id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"4\",\r\n    \"name\":\"\",\r\n    \"available\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/users/resources/1/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Git Resource by owner id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"aaa\",\r\n    \"available\":\"aaa\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/users/resources/2"
+			},
+			"response": []
+		}
+	]
+}

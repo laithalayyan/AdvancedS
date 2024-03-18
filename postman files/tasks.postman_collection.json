@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "0231b2b0-c7a3-4209-a144-4ab2827fc725",
+		"name": "tasks",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33055101"
+	},
+	"item": [
+		{
+			"name": "Delete task",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/tasks/2"
+			},
+			"response": []
+		},
+		{
+			"name": "Create task",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProjectID\": 1,\r\n    \"AssignedToUserID\": 1,\r\n    \"task_Title\": \"New Task\",\r\n    \"Description\": \"This is a detailed description of the task.\",\r\n    \"DueDate\": \"2024-03-20\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/tasks"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Task",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/tasks/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Update task",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ProjectID\": 1,\r\n    \"AssignedToUserID\": 1,\r\n    \"task_Title\": \"New Task\",\r\n    \"Description\": \"New task forrr\",\r\n    \"DueDate\": \"2024-03-20\",\r\n    \"Status\": \"completed\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:3000/tasks/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Tasks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:3000/tasks/"
+			},
+			"response": []
+		}
+	]
+}
