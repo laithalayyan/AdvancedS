@@ -63,7 +63,20 @@ INSERT INTO `countries` (`id`, `name`) VALUES
 (1, 'palestine');
 
 -- --------------------------------------------------------
+--admin
+ -- Create the admin table
+CREATE TABLE admin (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL
+);
 
+-- Insert a record into the admin table
+INSERT INTO admin (username, password, email) 
+VALUES ('demma', '12345678', 'demm@gmail.com');
+---------------------------------------
+--------
 --
 -- Table structure for table `payment`
 --

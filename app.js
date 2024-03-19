@@ -6,6 +6,7 @@ const rentRouter = require("./API/rent/router");
 const bodyParser = require('body-parser');
 const tasksRouter = require('./API/tasks/tasksRouter');
 const paymentRouter = require('./API/payment/paymentRouter');
+const adminrouter=require('./API/admin/adminrouter')
 
 app.use(express.json());
 
@@ -13,6 +14,7 @@ app.use("/users/resources", userRouter);
 app.use("/rent/",rentRouter);
 app.use(bodyParser.json());
 app.use('/tasks', tasksRouter);
+app.use('/admin',adminrouter);
 app.use('/payment', paymentRouter);
 
 const port = process.env.APP_PORT  || 4000;

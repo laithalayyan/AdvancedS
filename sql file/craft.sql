@@ -95,7 +95,16 @@ INSERT INTO `payment` (`PaymentID`, `RequestingUserID`, `ProjectID`, `PaymentAmo
 (11, 1, 24, 200, 'Credit Card', '2024-03-18 04:11:13', 'Completed');
 
 -- --------------------------------------------------------
+CREATE TABLE `admin` (
+    `id` INT PRIMARY KEY AUTO_INCREMENT,
+    `username` VARCHAR(50) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(100) NOT NULL
+);
 
+-- Insert a record into the admin table
+INSERT INTO admin (username, password, email) 
+VALUES ('demma', '12345678', 'demm@gmail.com');
 --
 -- Table structure for table `projects`
 --
