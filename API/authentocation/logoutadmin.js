@@ -1,6 +1,9 @@
-const jwt = require("jsonwebtoken");
-const cookieParser = require("cookie-parser");
-require("dotenv").config({ path: "./env/.env" });
+const bycrpt = require("bcrypt");
+const { validateCredentials } = require("./../../services/loginService");
+const tokenUtils = require(`./../../utils/tokenUtils`);
+const {
+  convertTimeToMilliseconds,
+} = require(`./../../utils/millisecondsConverter`);
 
 const logout = (req, res) => {
   const accessTokenSecret = process.env.ACCESS_TOKEN_SECRET;
