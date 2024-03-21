@@ -1,7 +1,6 @@
 const pool = require("../../DataBase/database");
-const login = async (admindata) => {
+const finduser = async (username) => {
 
-    const { username, password } = admindata
     try {
         const [adminuser] = await pool.query(`select * from admin where username='${username}'`);
 
@@ -18,6 +17,6 @@ const login = async (admindata) => {
 
 }
 module.exports = {
-    login
+    finduser
 
 };
